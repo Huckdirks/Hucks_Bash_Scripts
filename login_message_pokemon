@@ -7,4 +7,4 @@ FORTUNE=$(fortune)
 
 MESSAGE=$"$LOCATION_DATA | Quote: \"$FORTUNE\""
 
-pokemonsay "$MESSAGE" -t
+pokemonsay "$MESSAGE" -t -n
