@@ -7,15 +7,14 @@ lolcat
 
 # login_message_pokemon
 #cowsay
-rank-amateur-cowsay
+rank-amateur-cowsay @ https://github.com/tnalpgge/rank-amateur-cowsay @master
 curl
 fortune==9708
-#pokemonsay==1.0.0
-pokemonsay
+pokemonsay @ https://github.com/possatti/pokemonsay @master
 
 # login_message
-login_message_cow
-login_message_pokemon
+login_message_cow @ https://github.com/Huckdirks/Hucks_Bash_Scripts/blob/main/login_message_cow
+login_message_pokemon @ https://github.com/Huckdirks/Hucks_Bash_Scripts/blob/main/login_message_pokemon
 
 # cppcomp
 g++
