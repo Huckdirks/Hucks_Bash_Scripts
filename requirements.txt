@@ -1,6 +1,6 @@
 # login_message_cow
 #cowsay
-rank-amateur-cowsay @ https://github.com/tnalpgge/rank-amateur-cowsay@master
+rank-amateur-cowsay @ https://github.com/tnalpgge/rank-amateur-cowsay @master
 curl
 fortune==9708
 lolcat
