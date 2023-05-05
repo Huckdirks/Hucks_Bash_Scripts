@@ -1,11 +1,13 @@
 # login_message_cow
-cowsay
+#cowsay
+rank-amateur-cowsay
 curl
 fortune==9708
 lolcat
 
 # login_message_pokemon
-cowsay
+#cowsay
+rank-amateur-cowsay
 curl
 fortune==9708
 pokemonsay==1.0.0
