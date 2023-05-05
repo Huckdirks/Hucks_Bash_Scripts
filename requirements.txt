@@ -10,7 +10,8 @@ lolcat
 rank-amateur-cowsay
 curl
 fortune==9708
-pokemonsay==1.0.0
+#pokemonsay==1.0.0
+pokemonsay
 
 # login_message
 login_message_cow
