@@ -1,0 +1,8 @@
+# Directories
+.vscode/
+
+# Files
+.DS_Store
+*.env
+# Lmao it's just a test I wanna keep for shits and giggles
+fuckme

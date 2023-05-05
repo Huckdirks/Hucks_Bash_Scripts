@@ -1,0 +1,19 @@
+# login_message_cow
+cowsay
+curl
+fortune==9708
+lolcat
+
+# login_message_pokemon
+cowsay
+curl
+fortune==9708
+pokemonsay==1.0.0
+
+# login_message
+login_message_cow
+login_message_pokemon
+
+# cppcomp
+g++
+gcc

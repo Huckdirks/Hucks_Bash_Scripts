@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Get weather data from wttr.in (https://github.com/chubin/wttr.in)
+# More data on the URL format there
+# %0A is '\n'
+LOCATION_DATA=$(curl -s "https://wttr.in/?format=%F0%9F%97%BA%ef%b8%8f++%l:%0A%m+%T+(%Z)%0A%F0%9F%8C%A1++%t+|+%f+|+UV:%20%u%0A%c%C+|+%h+humidity")
+
+cows[1]="beavis.zen"
+cows[2]="blowfish"
+cows[3]="bong"
+cows[4]="bud-frogs"
+cows[5]="bunny"
+cows[6]="cheese"
+cows[7]="cower"
+cows[8]="daemon"
+cows[9]="default"
+cows[10]="dragon"
+cows[11]="dragon-and-cow"
+cows[12]="elephant"
+cows[13]="elephant-in-snake"
+cows[14]="eyes"
+cows[15]="flaming-sheep"
+cows[16]="ghostbusters"
+cows[17]="head-in"
+cows[18]="hellokitty"
+cows[19]="kiss"
+cows[20]="kitty"
+cows[21]="koala"
+cows[22]="kosh"
+cows[23]="luke-koala"
+cows[24]="meow"
+cows[25]="milk"
+cows[26]="moofasa"
+cows[27]="moose"
+cows[28]="mutilated"
+cows[29]="ren"
+cows[30]="satanic"
+cows[31]="sheep"
+cows[32]="skeleton"
+cows[33]="small"
+cows[34]="stegosaurus"
+cows[35]="stimpy"
+cows[36]="supermilker"
+cows[37]="surgery"
+cows[38]="three-eyes"
+cows[39]="turkey"
+cows[40]="turtle"
+cows[41]="tux"
+cows[42]="udder"
+cows[43]="vader"
+cows[44]="vader-koala"
+cows[45]="www"
+
+COW=${cows[$RANDOM % ${#cows[@]} + 1]}
+FORTUNE=$(fortune)
+
+MESSAGE=$"$LOCATION_DATA
+💬 Quote:
+\"$FORTUNE\""
+
+cowsay -f $COW "$MESSAGE" | lolcat -a -s 50

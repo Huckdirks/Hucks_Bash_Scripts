@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Install gcc
+brew install gcc
+
+# Find the highest version number of gcc & g++ in /opt/homebrew/bin/
+highest_gcc_version=$(ls /opt/homebrew/bin/gcc-[0-9]* | grep -o '[0-9]\+' | sort -rn | head -n 1)
+highest_gpp_version=$(ls /opt/homebrew/bin/g++-[0-9]* | grep -o '[0-9]\+' | sort -rn | head -n 1)
+echo "Highest version of gcc found: $highest_gcc_version"
+
+# Create symlink
+mklink gcc usr/local/bin $(which gcc-$highest_gcc_version)
+mklink g++ usr/local/bin $(which g++-$highest_gpp_version)
+
+echo "gcc & g++ symlinks created"
+echo "You can now use gcc & g++ as normal without defaulting to clang/++."

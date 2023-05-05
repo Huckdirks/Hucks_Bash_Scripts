@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rand=$(( $RANDOM % 2 ))
+
+# If 0, run login_message_cow
+if [ $rand -eq 0 ]; then
+    login_message_cow
+else
+    login_message_pokemon
+fi

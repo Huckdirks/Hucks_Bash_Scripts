@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get weather data from wttr.in (https://github.com/chubin/wttr.in)
+# More data on the URL format there
+LOCATION_DATA=$(curl -s "https://wttr.in/?format=++%l:++%T+(%Z)+|+Tempurature:+%t+|+UV:%20%u+|+Weather:+%C+|+%h+humidity")
+FORTUNE=$(fortune)
+
+MESSAGE=$"$LOCATION_DATA | Quote: \"$FORTUNE\""
+
+pokemonsay "$MESSAGE" -t

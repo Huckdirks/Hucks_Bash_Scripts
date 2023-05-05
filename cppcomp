@@ -1,0 +1,64 @@
+#!/bin/bash
+
+DEFAULT_FLAGS="-std=c++20 -Wextra -Wall -Werror -fexceptions -fno-common -D_GLIBCXX_ASSERTIONS"
+if [ $# -lt 2 ]; then
+  echo "Usage: $0 <source file> <output executable> [-d] [additional flags]"
+  echo "    <source file>: The source file to compile"
+  echo "    <output executable>: The name of the output executable"
+  echo "    [-d]: Debug mode"
+  echo "      Adds -g3 & Removes -O3 flag from g++"
+  echo "    [additional flags]: Additional flags to pass to g++"
+  echo "      Note: If passing in more than one flag, surround them in quotes"
+  echo -e "\nExample:"
+  echo "  cppcomp main.cpp main -d \"-fsanitize=address -pipe\""
+  echo "  runs: g++ -g3 -std=c++20 -Wextra -Wall -Werror -fexceptions -fno-common -D_GLIBCXX_ASSERTIONS -fsanitize=address -pipe main.cpp -o main"
+  echo -e "\nDefault Flags: $DEFAULT_FLAGS [-O3 or -g3]"
+  echo "    -std=c++20: Use C++20 standard"
+  echo "    -Wextra: Enable extra warnings"
+  echo "    -Wall: Enable all warnings"
+  echo "    -Werror: Treat warnings as errors"
+  echo "    -fexceptions: Enable exception handling (Also good for multithreading)"
+  echo "    -fno-common: Disallow multiple definitions of global variables"
+  echo "    -D_GLIBCXX_ASSERTIONS: Enables extra error checking for C++ containers, such as bounds checking in strings and null pointer checks when dereferencing smart pointers."
+  echo "    [-O3: Maximum optimization level]"
+  echo "    [-g3: Maximum debug level]"
+
+  exit 1
+fi
+
+SOURCE_FILE=$1
+OUTPUT_FILE=$2
+DEBUG_MODE=false
+ADDITIONAL_FLAGS=""
+
+if [ $# -eq 2 ]; then
+  DEFAULT_FLAGS="-O3 $DEFAULT_FLAGS"
+elif [ $# -ge 3 ]; then
+  if [ "$3" == "-d" ]; then
+    DEBUG_MODE=true
+    DEFAULT_FLAGS="-g3 $DEFAULT_FLAGS"
+  else
+    ADDITIONAL_FLAGS="$3"
+    DEFAULT_FLAGS="-O3 $DEFAULT_FLAGS"
+  fi
+fi
+
+if [ $# -ge 4 ]; then
+  ADDITIONAL_FLAGS="$ADDITIONAL_FLAGS $4"
+fi
+
+if [ "$DEBUG_MODE" == true ]; then
+  echo "Compiling $SOURCE_FILE in debug mode with additional flags: $ADDITIONAL_FLAGS"
+else
+  echo "Compiling $SOURCE_FILE with additional flags: $ADDITIONAL_FLAGS"
+fi
+
+#echo "g++ $DEFAULT_FLAGS $ADDITIONAL_FLAGS $SOURCE_FILE -o $OUTPUT_FILE"
+g++ $DEFAULT_FLAGS $ADDITIONAL_FLAGS $SOURCE_FILE -o $OUTPUT_FILE
+
+if [ $? -eq 0 ]; then
+  echo -e "\nCompilation successful. Output file: $OUTPUT_FILE"
+else
+  echo -e "\nCompilation failed."
+  exit 1
+fi

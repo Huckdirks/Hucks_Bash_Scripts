@@ -1,0 +1,36 @@
+#!/bin/bash
+
+file_name=$1
+file="$PWD/$file_name"
+link_dir=$"/usr/local/bin"
+
+if test ! -n "$file_name"  || test "$#" -gt 3; then
+    echo "Creates a link from a file to /usr/local/bin (by default)."
+    echo "Usage: mk_link file_name [link_dir] [file]"
+    echo "Parameters:"
+
+    echo "  file_name: name of file to link"
+
+    echo "  [link_dir: directory of the place you want to link the file to]"
+    echo "    default: /usr/local/bin/{file_name}"
+
+    echo "  [file: the full file path of file to link to]"
+    echo "    default: {current directory}/file_name"
+    exit 1
+fi
+
+# Set to_dir if second argument is given
+if test "$#" -gt 1; then
+    link_dir=$2
+fi
+
+# Set link_dir if third argument is given
+if test "$#" -eq 3; then
+    file=$3
+fi
+
+echo "Making link:"
+echo "$file --> $link_dir/$file_name"
+
+# Create link
+sudo ln -s $file $link_dir/$file_name
