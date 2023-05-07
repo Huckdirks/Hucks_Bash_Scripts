@@ -23,3 +23,6 @@ rank-amateur-cowsay
 curl
 fortune==9708
 pokemonsay
+
+# mv_and_link
+mklink

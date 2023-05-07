@@ -27,4 +27,4 @@ echo "$from_dir/$file_name --> $to_dir/"
 mv $from_dir/$file_name $to_dir/
 
 # Create link back to original location
-mk_link $file_name $to_dir $from_dir
+mklink $file_name $to_dir $from_dir
