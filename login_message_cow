@@ -58,4 +58,4 @@ MESSAGE=$"$LOCATION_DATA
 💬 Quote:
 \"$FORTUNE\""
 
-cowsay -f $COW "$MESSAGE" | lolcat -a -s 100
+cowsay -f $COW "$MESSAGE" | lolcat -a -s 200
