@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This basically does the opposite of ln -s
+# Instead of creating a link from a file/directory path to the current directory (usually), it creates a link from a file/directory in the current directory (unless specified otherwise) to a file/directory path (default set to /usr/local/bin)
+
 file_name=$1
 file="$PWD/$file_name"
 link_dir=$"/usr/local/bin"
