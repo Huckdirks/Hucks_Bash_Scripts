@@ -6,16 +6,16 @@ link_dir=$"/usr/local/bin"
 
 if test ! -n "$file_name"  || test "$#" -gt 3; then
     echo "Creates a link from a file to /usr/local/bin (by default)."
-    echo "Usage: mklink file_name [link_dir] [file]"
+    echo "Usage: mklink filename [link_dir] [file]"
     echo "Parameters:"
 
-    echo "  file_name: name of file to link"
+    echo "  filename: name of file to link"
 
     echo "  [link_dir: directory of the place you want to link the file to]"
-    echo "    default: /usr/local/bin/{file_name}"
+    echo "    default: /usr/local/bin/{filename}"
 
     echo "  [file: the full file path of file to link to]"
-    echo "    default: {current directory}/file_name"
+    echo "    default: {current directory}/filename"
     exit 1
 fi
 
