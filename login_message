@@ -57,7 +57,7 @@ B_U_GREEN='\033[1;4;32m' # Bold, Underline, Green
 
 # Welcome message
 echo -e "${B_U_YELLOW}Welcome to the terminal $USER ⊂(◉‿◉)つ${NC}"
-echo -e "${BGreen}$(date)${NC}"
+echo -e "${BGreen}$(date +"%a %m/%d/%Y %r %Z")${NC}"
 echo -e "${BCyan}$(uname -n -o -p)${NC}"
 #echo -e "${BRed}Press Ctrl+C to stop the update checking\n& welcome message, and get to work!${NC}\n"
 echo -e "${BRed}Would you like to check for updates (Y/N)${NC}"
@@ -82,7 +82,7 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
     echo -e "${MAGENTA}Updating Global NPM Packages 📦${NC}"
     npm update -g
 
-    echo -e "${RED}Updating Mojo 🔥${NC}"
+    echo -e "${MAGENTA}Updating Mojo 🔥${NC}"
     modular update mojo
 
     # Actual message
