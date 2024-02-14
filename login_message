@@ -67,7 +67,7 @@ read -n 1 -r ANSWER
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
     echo -e "\n\n${B_U_GREEN}Checking for updates...${NC}"
     # Check for updates
-    echo -e "${MAGENTA}Updating Homebrew 🍺${NC}"
+    echo -e "${MAGENTA}Updating Homebrew & Homebrew Packages 🍺${NC}"
     brew update
     brew upgrade
     brew cleanup
@@ -81,6 +81,9 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
 
     echo -e "${MAGENTA}Updating Global NPM Packages 📦${NC}"
     npm update -g
+
+    echo -e "${RED}Updating Mojo 🔥${NC}"
+    modular update mojo
 
     # Actual message
     echo -e "\n"
