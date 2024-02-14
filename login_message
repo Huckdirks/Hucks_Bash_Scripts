@@ -76,6 +76,7 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
     pip list --outdated | awk 'NR>1 {print $1}' | xargs -n1 pip install -U
     pip install -U pip
 
+    # Doesn't work with nvm for some reason, but works when run manually ¯\_(ツ)_/¯
     #echo -e "${MAGENTA}Updating NodeJS ${NC}"
     #nvm install node --reinstall-packages-from=node
 
