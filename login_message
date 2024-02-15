@@ -59,16 +59,13 @@ B_U_GREEN='\033[1;4;32m' # Bold, Underline, Green
 echo -e "${B_U_YELLOW}Welcome to the terminal $USER ⊂(◉‿◉)つ${NC}"
 echo -e "${BGreen}$(date +"%a %m/%d/%Y %r %Z")${NC}"
 echo -e "${BCyan}$(uname -n -o -p)${NC}"
-#echo -e "${BRed}Press Ctrl+C to stop the update checking\n& welcome message, and get to work!${NC}\n"
 #echo -e "${BWhite}$(uptime)${NC}"
 
 echo -e "${BPurple}Would you like to check for updates (Y/N)${NC}"
 if read -n 1 -r -t 7 ANSWER; then
-    #echo -e "\nYou pressed: $ANSWER"
     ANSWER='y'
 else
     echo -e "${RED}NOPE!${NC}"
-    #echo -e "\nNo input within 10 seconds, proceeding with default option 'N'"
     ANSWER='n'  # Default to 'n' after timeout
 fi
 
