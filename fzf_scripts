@@ -86,25 +86,21 @@ fzcode() {
         TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
         code $TO_OPEN
         echo "Opening in VSCode: $TO_OPEN"
-        #code "$(fd --follow --hidden --exclude .git . / | fzf)"
     elif [[ $1 == "home" || $1 == "h" ]]; then
         # If the argument "home" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
         code $TO_OPEN
         echo "Opening in VSCode: $TO_OPEN"
-        #code "$(fd --follow --hidden --exclude .git . ~/ | fzf)"
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
         # If the argument "desktop" is provided, search within the desktop directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)
         code $TO_OPEN
         echo "Opening in VSCode: $TO_OPEN"
-        #code "$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)"
     else
         # Otherwise, search within the current directory
         TO_OPEN=$(fzf)
         code $TO_OPEN
         echo "Opening in VSCode: $TO_OPEN"
-        #code "$(fd --follow --hidden --exclude .git . | fzf)"
     fi
 }
 
