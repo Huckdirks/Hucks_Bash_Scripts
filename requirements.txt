@@ -26,3 +26,8 @@ pokemonsay
 
 # mv_and_link
 mklink
+
+# fzfscripts
+fzf
+fd
+ohmyzsh code
