@@ -83,16 +83,28 @@ fzcode() {
         return 1
     elif [[ $1 == "root" || $1 == "r" ]]; then
         # If the argument "root" is provided, search within the home directory
-        code "$(fd --follow --hidden --exclude .git . / | fzf)"
+        TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
+        code $TO_OPEN
+        echo "Opening in VSCode: $TO_OPEN"
+        #code "$(fd --follow --hidden --exclude .git . / | fzf)"
     elif [[ $1 == "home" || $1 == "h" ]]; then
         # If the argument "home" is provided, search within the home directory
-        code "$(fd --follow --hidden --exclude .git . ~/ | fzf)"
+        TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
+        code $TO_OPEN
+        echo "Opening in VSCode: $TO_OPEN"
+        #code "$(fd --follow --hidden --exclude .git . ~/ | fzf)"
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
         # If the argument "desktop" is provided, search within the desktop directory
-        code "$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)"
+        TO_OPEN=$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)
+        code $TO_OPEN
+        echo "Opening in VSCode: $TO_OPEN"
+        #code "$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)"
     else
         # Otherwise, search within the current directory
-        code "$(fd --follow --hidden --exclude .git . | fzf)"
+        TO_OPEN=$(fzf)
+        code $TO_OPEN
+        echo "Opening in VSCode: $TO_OPEN"
+        #code "$(fd --follow --hidden --exclude .git . | fzf)"
     fi
 }
 
