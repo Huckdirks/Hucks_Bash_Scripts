@@ -9,9 +9,9 @@ fzcd() {
         echo ""
         echo "Options:"
         echo "  no option   Search directories within the current directory."
-        echo "  home, h     Search directories within the home directory."
-        echo "  root, r     Search directories within the root directory."
-        echo "  desktop, d  Search directories within the desktop directory."
+        echo "  root, r     Search directories within the root directory (/)."
+        echo "  home, h     Search directories within the home directory (~/)."
+        echo "  desktop, d  Search directories within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
     elif [[ $1 == "root" || $1 == "r" ]]; then
@@ -39,9 +39,9 @@ fzopen() {
         echo ""
         echo "Options:"
         echo "  no option   Search files within the current directory."
-        echo "  home, h     Search files within the home directory."
-        echo "  root, r     Search files within the root directory."
-        echo "  desktop, d  Search files within the desktop directory."
+        echo "  root, r     Search files within the root directory (/)."
+        echo "  home, h     Search files within the home directory (~/)."
+        echo "  desktop, d  Search files within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
     elif [[ $1 == "root" || $1 == "r" ]]; then
@@ -76,9 +76,9 @@ fzcode() {
         echo ""
         echo "Options:"
         echo "  no option   Search files within the current directory."
-        echo "  home, h     Search files within the home directory."
-        echo "  root, r     Search files within the root directory."
-        echo "  desktop, d  Search files within the desktop directory."
+        echo "  root, r     Search files within the root directory (/)."
+        echo "  home, h     Search files within the home directory (~/)."
+        echo "  desktop, d  Search files within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
     elif [[ $1 == "root" || $1 == "r" ]]; then
