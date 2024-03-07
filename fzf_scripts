@@ -48,22 +48,22 @@ fzopen() {
         # If the argument "root" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
         open . $TO_OPEN
-        echo "Opening '$TO_OPEN'..."
+        echo "Opening: $TO_OPEN"
     elif [[ $1 == "home" || $1 == "h" ]]; then
         # If the argument "home" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
         open . $TO_OPEN
-        echo "Opening '$TO_OPEN'..."
+        echo "Opening: $TO_OPEN"
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
         # If the argument "desktop" is provided, search within the desktop directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)
         open . $TO_OPEN
-        echo "Opening '$TO_OPEN'..."
+        echo "Opening: $TO_OPEN"
     else
         # Otherwise, search within the current directory
         TO_OPEN=$(fzf)
         open . $TO_OPEN
-        echo "Opening '$TO_OPEN'..."
+        echo "Opening: $TO_OPEN"
     fi
 }
 
