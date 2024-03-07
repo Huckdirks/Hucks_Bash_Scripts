@@ -2,7 +2,19 @@
 
 
 fzcd() {
-    if [[ $1 == "root" || $1 == "r" ]]; then
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        # Display a help message if the argument is "-h" or "--help"
+        echo "Usage: fzcd [OPTION]"
+        echo "Search for a directory using fzf and change to it."
+        echo ""
+        echo "Options:"
+        echo "  no option   Search directories within the current directory."
+        echo "  home, h     Search directories within the home directory."
+        echo "  root, r     Search directories within the root directory."
+        echo "  desktop, d  Search directories within the desktop directory."
+        echo "  -h, --help  Display this help message and exit."
+        return 1
+    elif [[ $1 == "root" || $1 == "r" ]]; then
         # If the argument "root" is provided, search within the home directory
         cd "$(fd --type directory --follow --hidden --exclude .git . / | fzf --preview '')"
     elif [[ $1 == "home" || $1 == "h" ]]; then
@@ -20,7 +32,19 @@ fzcd() {
 
 
 fzopen() {
-    if [[ $1 == "root" || $1 == "r" ]]; then
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        # Display a help message if the argument is "-h" or "--help"
+        echo "Usage: fzopen [OPTION]"
+        echo "Search for a file using fzf and open it."
+        echo ""
+        echo "Options:"
+        echo "  no option   Search files within the current directory."
+        echo "  home, h     Search files within the home directory."
+        echo "  root, r     Search files within the root directory."
+        echo "  desktop, d  Search files within the desktop directory."
+        echo "  -h, --help  Display this help message and exit."
+        return 1
+    elif [[ $1 == "root" || $1 == "r" ]]; then
         # If the argument "root" is provided, search within the home directory
         open . "$(fd --follow --hidden --exclude .git . / | fzf)"
     elif [[ $1 == "home" || $1 == "h" ]]; then
@@ -37,7 +61,19 @@ fzopen() {
 
 
 fzcode() {
-    if [[ $1 == "root" || $1 == "r" ]]; then
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        # Display a help message if the argument is "-h" or "--help"
+        echo "Usage: fzcode [OPTION]"
+        echo "Search for a file using fzf and open it in Visual Studio Code."
+        echo ""
+        echo "Options:"
+        echo "  no option   Search files within the current directory."
+        echo "  home, h     Search files within the home directory."
+        echo "  root, r     Search files within the root directory."
+        echo "  desktop, d  Search files within the desktop directory."
+        echo "  -h, --help  Display this help message and exit."
+        return 1
+    elif [[ $1 == "root" || $1 == "r" ]]; then
         # If the argument "root" is provided, search within the home directory
         code "$(fd --follow --hidden --exclude .git . / | fzf)"
     elif [[ $1 == "home" || $1 == "h" ]]; then
