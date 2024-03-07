@@ -1,6 +1,35 @@
 #!/bin/bash
 
 
+fzfind() {
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        # Display a help message if the argument is "-h" or "--help"
+        echo "Usage: fzfind [OPTION]"
+        echo "Search for a file using fzf and display its path."
+        echo ""
+        echo "Options:"
+        echo "  no option   Search files within the current directory."
+        echo "  root, r     Search files within the root directory (/)."
+        echo "  home, h     Search files within the home directory (~/)."
+        echo "  desktop, d  Search files within the desktop directory (~/Desktop/)."
+        echo "  -h, --help  Display this help message and exit."
+        return 1
+    elif [[ $1 == "root" || $1 == "r" ]]; then
+        # If the argument "root" is provided, search within the home directory
+        fd --follow --hidden --exclude .git . / | fzf
+    elif [[ $1 == "home" || $1 == "h" ]]; then
+        # If the argument "home" is provided, search within the home directory
+        fd --follow --hidden --exclude .git . ~/ | fzf
+    elif [[ $1 == "desktop" || $1 == "d" ]]; then
+        # If the argument "desktop" is provided, search within the desktop directory
+        fd --follow --hidden --exclude .git . ~/Desktop | fzf
+    else
+        # Otherwise, search within the current directory
+        fd --follow --hidden --exclude .git . | fzf
+    fi
+}
+
+
 fzcd() {
     if [[ $1 == "-h" || $1 == "--help" ]]; then
         # Display a help message if the argument is "-h" or "--help"
