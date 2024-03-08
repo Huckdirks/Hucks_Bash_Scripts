@@ -77,7 +77,7 @@ fzopen() {
         # If the argument "root" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
         # Only open the file if it exists
-        [ -n "$TO_OPEN" ] && open . $TO_OPEN
+        [ -n "$TO_OPEN" ] && open $TO_OPEN
         if [ -e "$TO_OPEN" ]; then
             echo "Opening: $TO_OPEN"
         else
@@ -86,7 +86,7 @@ fzopen() {
     elif [[ $1 == "home" || $1 == "h" ]]; then
         # If the argument "home" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
-        [ -n "$TO_OPEN" ] && open . $TO_OPEN
+        [ -n "$TO_OPEN" ] && open $TO_OPEN
         if [ -e "$TO_OPEN" ]; then
             echo "Opening: $TO_OPEN"
         else
@@ -95,7 +95,7 @@ fzopen() {
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
         # If the argument "desktop" is provided, search within the desktop directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)
-        [ -n "$TO_OPEN" ] && open . $TO_OPEN
+        [ -n "$TO_OPEN" ] && open $TO_OPEN
         if [ -e "$TO_OPEN" ]; then
             echo "Opening: $TO_OPEN"
         else
@@ -105,7 +105,7 @@ fzopen() {
     else
         # Otherwise, search within the current directory
         TO_OPEN=$(fzf)
-        [ -n "$TO_OPEN" ] && open . $TO_OPEN
+        [ -n "$TO_OPEN" ] && open $TO_OPEN
         if [ -e "$TO_OPEN" ]; then
             echo "Opening: $TO_OPEN"
         else
@@ -132,22 +132,41 @@ fzcode() {
         # If the argument "root" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
         code $TO_OPEN
-        echo "Opening in VSCode: $TO_OPEN"
+        #echo "Opening in VSCode: $TO_OPEN"
+        if [ -e "$TO_OPEN" ]; then
+            echo "Opening in VSCode: $TO_OPEN"
+        else
+            return 1
+        fi
     elif [[ $1 == "home" || $1 == "h" ]]; then
         # If the argument "home" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
         code $TO_OPEN
-        echo "Opening in VSCode: $TO_OPEN"
+        #echo "Opening in VSCode: $TO_OPEN"
+        if [ -e "$TO_OPEN" ]; then
+            echo "Opening in VSCode: $TO_OPEN"
+        else
+            return 1
+        fi
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
         # If the argument "desktop" is provided, search within the desktop directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)
         code $TO_OPEN
-        echo "Opening in VSCode: $TO_OPEN"
+        #echo "Opening in VSCode: $TO_OPEN"
+        if [ -e "$TO_OPEN" ]; then
+            echo "Opening in VSCode: $TO_OPEN"
+        else
+            return 1
+        fi
     else
         # Otherwise, search within the current directory
         TO_OPEN=$(fzf)
         code $TO_OPEN
-        echo "Opening in VSCode: $TO_OPEN"
+        #echo "Opening in VSCode: $TO_OPEN"
+        if [ -e "$TO_OPEN" ]; then
+            echo "Opening in VSCode: $TO_OPEN"
+        else
+            return 1
     fi
 }
 
