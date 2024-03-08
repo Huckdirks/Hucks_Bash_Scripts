@@ -4,8 +4,8 @@
 fzwhere() {
     if [[ $1 == "-h" || $1 == "--help" ]]; then
         # Display a help message if the argument is "-h" or "--help"
-        echo "Usage: fzfind [OPTION]"
-        echo "Search for a file using fzf and display its path."
+        echo "Usage: fzwhere [OPTION]"
+        echo "Search for anything using fzf and display its path."
         echo ""
         echo "Options:"
         echo "  no option   Search files within the current directory."
