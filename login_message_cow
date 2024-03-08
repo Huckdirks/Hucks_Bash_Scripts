@@ -3,7 +3,7 @@
 # Get weather data from wttr.in (https://github.com/chubin/wttr.in)
 # More data on the URL format there
 # %0A is '\n'
-LOCATION_DATA=$(curl -s "https://wttr.in/?format=%F0%9F%97%BA%ef%b8%8f++%l:%0A%m+%T+(%Z)%0A%F0%9F%8C%A1++%t+|+%f+|+UV:%20%u%0A%c%C+|+%h+humidity")
+LOCATION_DATA=$(curl -s --max-time 5 "https://wttr.in/?format=%F0%9F%97%BA%ef%b8%8f++%l:%0A%m+%T+(%Z)%0A%F0%9F%8C%A1++%t+|+%f+|+UV:%20%u%0A%c%C+|+%h+humidity")
 
 cows[1]="beavis.zen"
 cows[2]="blowfish"
