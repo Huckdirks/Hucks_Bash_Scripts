@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-fzfind() {
+fzwhere() {
     if [[ $1 == "-h" || $1 == "--help" ]]; then
         # Display a help message if the argument is "-h" or "--help"
         echo "Usage: fzfind [OPTION]"
@@ -14,10 +14,10 @@ fzfind() {
         echo "  desktop, d  Search files within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
-    elif [[ $1 == "root" || $1 == "r" ]]; then
+    elif [[ $1 == "root" || $1 == "r" || $1 == "/" ]]; then
         # If the argument "root" is provided, search within the home directory
         fd --follow --hidden --exclude .git . / | fzf
-    elif [[ $1 == "home" || $1 == "h" ]]; then
+    elif [[ $1 == "home" || $1 == "h" || $1 == "~" ]]; then
         # If the argument "home" is provided, search within the home directory
         fd --follow --hidden --exclude .git . ~/ | fzf
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
@@ -43,10 +43,10 @@ fzcd() {
         echo "  desktop, d  Search directories within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
-    elif [[ $1 == "root" || $1 == "r" ]]; then
+    elif [[ $1 == "root" || $1 == "r" || $1 == "/" ]]; then
         # If the argument "root" is provided, search within the home directory
         cd "$(fd --type directory --follow --hidden --exclude .git . / | fzf --preview '')"
-    elif [[ $1 == "home" || $1 == "h" ]]; then
+    elif [[ $1 == "home" || $1 == "h" || $1 == "~" ]]; then
         # If the argument "home" is provided, search within the home directory
         cd "$(fd --type directory --follow --hidden --exclude .git . ~/ | fzf --preview '')"
     
@@ -73,7 +73,7 @@ fzopen() {
         echo "  desktop, d  Search files within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
-    elif [[ $1 == "root" || $1 == "r" ]]; then
+    elif [[ $1 == "root" || $1 == "r" || $1 == "/" ]]; then
         # If the argument "root" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
         # Only open the file if it exists
@@ -83,7 +83,7 @@ fzopen() {
         else
             return 1
         fi
-    elif [[ $1 == "home" || $1 == "h" ]]; then
+    elif [[ $1 == "home" || $1 == "h" || $1 == "~" ]]; then
         # If the argument "home" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
         [ -n "$TO_OPEN" ] && open $TO_OPEN
@@ -128,20 +128,22 @@ fzcode() {
         echo "  desktop, d  Search files within the desktop directory (~/Desktop/)."
         echo "  -h, --help  Display this help message and exit."
         return 1
-    elif [[ $1 == "root" || $1 == "r" ]]; then
+    elif [[ $1 == "root" || $1 == "r" || $1 == "/" ]]; then
         # If the argument "root" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . / | fzf)
-        code $TO_OPEN
+        [ -n "$TO_OPEN" ] && code $TO_OPEN
+        #code $TO_OPEN
         #echo "Opening in VSCode: $TO_OPEN"
         if [ -e "$TO_OPEN" ]; then
             echo "Opening in VSCode: $TO_OPEN"
         else
             return 1
         fi
-    elif [[ $1 == "home" || $1 == "h" ]]; then
+    elif [[ $1 == "home" || $1 == "h" || $1 == "~" ]]; then
         # If the argument "home" is provided, search within the home directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/ | fzf)
-        code $TO_OPEN
+        [ -n "$TO_OPEN" ] && code $TO_OPEN
+        #code $TO_OPEN
         #echo "Opening in VSCode: $TO_OPEN"
         if [ -e "$TO_OPEN" ]; then
             echo "Opening in VSCode: $TO_OPEN"
@@ -151,7 +153,8 @@ fzcode() {
     elif [[ $1 == "desktop" || $1 == "d" ]]; then
         # If the argument "desktop" is provided, search within the desktop directory
         TO_OPEN=$(fd --follow --hidden --exclude .git . ~/Desktop | fzf)
-        code $TO_OPEN
+        #code $TO_OPEN
+        [ -n "$TO_OPEN" ] && code $TO_OPEN
         #echo "Opening in VSCode: $TO_OPEN"
         if [ -e "$TO_OPEN" ]; then
             echo "Opening in VSCode: $TO_OPEN"
@@ -161,12 +164,14 @@ fzcode() {
     else
         # Otherwise, search within the current directory
         TO_OPEN=$(fzf)
-        code $TO_OPEN
+        #code $TO_OPEN
+        [ -n "$TO_OPEN" ] && code $TO_OPEN
         #echo "Opening in VSCode: $TO_OPEN"
         if [ -e "$TO_OPEN" ]; then
             echo "Opening in VSCode: $TO_OPEN"
         else
             return 1
+        fi
     fi
 }
 
