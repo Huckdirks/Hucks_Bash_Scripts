@@ -76,6 +76,7 @@ else
 fi
 
 # Ensure all the initial arguments are processed before running the main command
+# I actually have no idea why this is here ¯\_(ツ)_/¯
 shift "$SHIFT_NUM"
 
 fd $REGEX_PATTERN $SEARCH_DIR | while read -r FILE; do
