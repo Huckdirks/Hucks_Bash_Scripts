@@ -37,5 +37,5 @@ fd $REGEX_PATTERN $SEARCH_DIR | while read -r FILE; do
     NEW_FILE=$(echo "$FILE" | sed "s/$FIND_WORD/$REPLACE_WORD/g")
 
     echo "Original: $FILE -> New: $NEW_FILE"
-    #mv "$FILE" "$NEW_FILE"
+    mv "$FILE" "$NEW_FILE"
 done
