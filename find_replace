@@ -1,15 +1,13 @@
 #!/bin/bash
 
-if [ "$#" -lt 2 ]; then
-    echo "Find and replace a word in file or directory names."
-    echo "Usage: find_replace <word_to_find> <word_to_replace> [search_dir]"
-    echo "Parameters:"
-    echo "  word_to_find: word to find in file names, treated as a regex pattern"
-    echo "  word_to_replace: word to replace with"
-    echo "  [search_dir]: the directory to search in, default to current directory if not provided"
-    exit 1
+if [[ "$#" -lt 2 ]]; then
+  echo "Usage: find_replace FIND_WORD REPLACE_WORD [-r REGEX_PATTERN] [SEARCH_DIR]"
+  echo "Search for files with the word FIND_WORD in their names and replace it with REPLACE_WORD."
+  echo "Options:"
+  echo "  -r REGEX_PATTERN  Use REGEX_PATTERN as a regex pattern to search for files."
+  echo "  SEARCH_DIR        The directory to search in, default to current directory if not provided."
+  exit 1
 fi
-
 
 
 # Word to find in file names, treated as a regex pattern
@@ -17,22 +15,6 @@ FIND_WORD=$1
 # Word to replace with
 REPLACE_WORD=$2
 
-# Check if the third argument is -r, to use the fourth argument as REGEX_PATTERN
-#if [[ "$3" == "-r" ]]; then
-#  REGEX_PATTERN="$4"
-  # Assuming SEARCH_DIR is the fifth argument, or set it as a default value
-#  SEARCH_DIR="${5:-.}" # Default to current directory if not provided
-#else
-  # If -r is not provided, use FIND_WORD as REGEX_PATTERN
-#  REGEX_PATTERN="$FIND_WORD"
-#  # Assuming SEARCH_DIR is the third argument, or set it as a default value
-#  SEARCH_DIR="${3:-$PWD}" # Default to current directory if not provided
-#fi
-# The directory to search in, default to current directory if not provided
-#SEARCH_DIR=${3:-$PWD}
-
-#FIND_WORD="$1"
-#REPLACE_WORD="$2"
 SHIFT_NUM=2
 
 # Check if the -r option is present
@@ -51,21 +33,8 @@ fi
 # Ensure all the initial arguments are processed before running the main command
 shift "$SHIFT_NUM"
 
-echo $FIND_WORD
-echo $REPLACE_WORD
-echo $REGEX_PATTERN
-
-# Use fd to find files with the word to find in their names and output original and new file names
-#fd "$FIND_WORD" "$SEARCH_DIR" --exec bash -c 'NEW_FILE=$(echo "{}" | sed "s/'"$FIND_WORD"'/'"$REPLACE_WORD"'/g"); echo "Original: {} -> New: $NEW_FILE"' \;
-#fd "$FIND_WORD" "$SEARCH_DIR" --exec bash -c 'NEW_FILE=$(echo "{}" | sed "s/\b$FIND_WORD\b/$REPLACE_WORD/g"); echo "Original: {} -> New: $NEW_FILE"' \;
-#fd "$REGEX_PATTERN" "$SEARCH_DIR" --exec-batch bash -c 'NEW_FILE=$(echo "{}" | sed "s/$FIND_WORD/$REPLACE_WORD/g"); mv "{}" "$NEW_FILE"' \;
-#fd "$REGEX_PATTERN" "$SEARCH_DIR" --exec-batch bash -c 'NEW_FILE=$(echo "{}" | sed "s/"$FIND_WORD"/"$REPLACE_WORD"/g"); echo "Original: {} -> New: $NEW_FILE"' \;
-
-#fd '\b(?:shiny-)?1\.png\b' $PWD --exec-batch bash -c 'NEW_FILE=$(echo "{}" | sed 's/$FIND_WORD/$REPLACE_WORD/g'); echo "Original: {} -> New: $NEW_FILE"' \;
-
 fd $REGEX_PATTERN $SEARCH_DIR | while read -r FILE; do
     NEW_FILE=$(echo "$FILE" | sed "s/$FIND_WORD/$REPLACE_WORD/g")
-    #NEW_FILE=$(echo "$FILE" | sed 's/$FINDWORD/$REPLACE_WORD/g')
 
     echo "Original: $FILE -> New: $NEW_FILE"
     #mv "$FILE" "$NEW_FILE"
